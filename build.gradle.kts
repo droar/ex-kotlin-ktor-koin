@@ -9,13 +9,13 @@ val mockk_version: String by project
 val kotest_version: String by project
 
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "1.9.10"
     id("io.kotest.multiplatform") version "5.0.2"
     id("io.ktor.plugin") version "2.3.3"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
-group = "com.droar.samples"
+group = "com.droar.samples.ktor"
 version = "0.0.1"
 
 application {

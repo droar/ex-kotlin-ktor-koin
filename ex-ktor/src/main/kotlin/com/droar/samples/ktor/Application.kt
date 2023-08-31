@@ -1,15 +1,19 @@
 package com.droar.samples.ktor
 
-import com.droar.samples.ktor.plugins.*
+import com.droar.samples.ktor.infrastructure.plugins.configureDatabases
+import com.droar.samples.ktor.infrastructure.plugins.configureHTTP
+import com.droar.samples.ktor.infrastructure.plugins.configureRouting
+import com.droar.samples.ktor.infrastructure.plugins.configureSerialization
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import io.ktor.server.netty.EngineMain.main
 
-fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
-        .start(wait = true)
+fun main(args: Array<String>) {
+    main(args)
 }
 
 fun Application.module() {
+    configureSerialization()
+    configureDatabases()
+    configureHTTP()
     configureRouting()
 }
