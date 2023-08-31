@@ -1,7 +1,6 @@
 package com.droar.samples.ktor
 
 import com.droar.samples.ktor.infrastructure.plugins.configureRouting
-import com.droar.samples.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
