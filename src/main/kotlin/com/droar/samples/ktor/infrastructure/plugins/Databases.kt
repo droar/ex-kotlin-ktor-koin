@@ -1,4 +1,4 @@
-package com.droar.samples.plugins
+package com.droar.samples.ktor.infrastructure.plugins
 
 import io.ktor.http.*
 import io.ktor.server.application.*

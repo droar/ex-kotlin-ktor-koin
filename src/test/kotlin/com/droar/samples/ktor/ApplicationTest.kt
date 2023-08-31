@@ -1,11 +1,13 @@
-package com.droar.samples
+package com.droar.samples.ktor
 
+import com.droar.samples.ktor.infrastructure.plugins.configureRouting
 import com.droar.samples.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
-import kotlin.test.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class ApplicationTest {
     @Test

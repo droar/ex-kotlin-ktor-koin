@@ -1,4 +1,4 @@
-package com.droar.samples.plugins
+package com.droar.samples.ktor.infrastructure.plugins
 
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
@@ -7,6 +7,7 @@ import java.sql.Statement
 
 @Serializable
 data class City(val name: String, val population: Int)
+
 class CityService(private val connection: Connection) {
     companion object {
         private const val CREATE_TABLE_CITIES =

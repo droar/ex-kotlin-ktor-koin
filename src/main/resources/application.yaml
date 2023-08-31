@@ -1,6 +1,6 @@
 ktor:
   application:
     modules:
-      - com.droar.samples.ApplicationKt.module
+      - com.droar.samples.ktor.ApplicationKt.module
   deployment:
     port: 8080
