@@ -1,8 +1,9 @@
 package com.droar.samples.ktor.application.services
 
 import com.droar.samples.ktor.domain.Book
+import com.droar.samples.ktor.domain.usecases.BookUseCase
 
-class BookService {
+class BookService : BookUseCase {
     private val books = mutableListOf<Book>()
 
     init {
@@ -14,11 +15,11 @@ class BookService {
         books.add(Book(6, "The Sad Cat", "CatnessFell", "The wellness of cats"))
     }
 
-    fun getBooks(): List<Book> = books
+    override fun getBooks(): List<Book> = books
 
-    fun getBook(id: Int): Book? = books.find { it.id == id }
+    override fun getBook(id: Int): Book? = books.find { it.id == id }
 
-    fun addBook(book: Book): Book {
+    override fun addBook(book: Book): Book {
         val foundBook = books.find { it.id == book.id }.let {
             if (it == null) {
                 books.add(book)
@@ -30,7 +31,7 @@ class BookService {
         return foundBook
     }
 
-    fun deleteBook(id: Int): Book? {
+    override fun deleteBook(id: Int): Book? {
         return books.find { it.id == id }?.also { books.remove(it) }
     }
 }

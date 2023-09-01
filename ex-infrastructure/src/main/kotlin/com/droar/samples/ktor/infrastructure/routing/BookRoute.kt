@@ -1,21 +1,22 @@
 package com.droar.samples.ktor.infrastructure.routing
 
 import com.droar.samples.ktor.domain.Book
-import com.droar.samples.ktor.application.services.BookService
+import com.droar.samples.ktor.domain.usecases.BookUseCase
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.pipeline.*
+import org.koin.java.KoinJavaComponent.inject
+
+private val bookUseCase: BookUseCase by inject(BookUseCase::class.java)
 
 fun Route.bookRoutes() {
-    val bookService = BookService()
-
     route("books") {
         get("/{id}") {
             val bookIdFromQuery = getParameter("id")
-            val book = bookService.getBook(bookIdFromQuery.toInt())
+            val book = bookUseCase.getBook(bookIdFromQuery.toInt())
 
             if (book == null) {
                 call.respond(HttpStatusCode.NotFound, "Book not found");
@@ -27,17 +28,17 @@ fun Route.bookRoutes() {
         post("") {
             // Call receive a book, deserialized as a book
             val requestBody = call.receive<Book>()
-            bookService.addBook(requestBody)
+            bookUseCase.addBook(requestBody)
             call.respond(requestBody)
         }
 
         get("") {
-            call.respond(bookService.getBooks())
+            call.respond(bookUseCase.getBooks())
         }
 
-        delete("/{id}"){
+        delete("/{id}") {
             val bookIdFromQuery = getParameter("id")
-            val book = bookService.deleteBook(bookIdFromQuery.toInt())
+            val book = bookUseCase.deleteBook(bookIdFromQuery.toInt())
 
             if (book == null) {
                 call.respond(HttpStatusCode.NotFound, "Book not found");
